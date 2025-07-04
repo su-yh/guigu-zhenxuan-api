@@ -1,0 +1,9 @@
+添加子模块
+    git submodule add https://github.com/su-yh/web-spring-boot-starter.git
+
+配置子模块私有地址
+    git config submodule.web-spring-boot-starter.url git@github.com:su-yh/web-spring-boot-starter.git
+初始化子模块
+    git submodule init
+    git submodule update
+

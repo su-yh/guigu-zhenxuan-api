@@ -17,6 +17,7 @@
 
     <modules>
         <module>zhenxuan-api</module>
+        <module>web-spring-boot-starter</module>
     </modules>
 
 
