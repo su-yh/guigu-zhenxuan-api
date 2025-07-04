@@ -1,0 +1,21 @@
+
+
+
+---
+spring:
+  config:
+    activate:
+      on-profile: suyh,suyh_mac
+
+
+logging:
+  level:
+    root: info
+  file:
+    name: /tmp/logs/eb.log
+  logback:
+    rollingpolicy:
+      clean-history-on-start: true
+      file-name-pattern: /tmp/logs/%d{yyyy-MM-dd}/eb.%02i.log
+      max-file-size: 20MB
+

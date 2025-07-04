@@ -1,0 +1,33 @@
+spring:
+  datasource:
+    dynamic:
+      enabled: true
+      strict: true
+      primary: "master"
+
+---
+spring:
+  config:
+    activate:
+      on-profile: suyh,suyh_mac
+
+biz:
+  datasource:
+    multi:
+      master:
+        jdbc-url: jdbc:mysql://isuyh.com:3306/study_vue?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
+        username: study_vue
+        password: study_vue
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        flyway:
+          enabled: true
+          locations:
+            - "sqls/mysql"
+
+
+
+
+
+
+
+

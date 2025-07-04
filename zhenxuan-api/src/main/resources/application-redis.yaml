@@ -1,0 +1,23 @@
+
+spring:
+  redis:
+    timeout: PT1S
+    connect-timeout: PT5S
+    lettuce:
+      pool:
+        enabled: true
+        max-active: 1000
+        max-wait: PT2S
+        max-idle: 500
+        min-idle: 10
+
+
+---
+spring:
+  config:
+    activate:
+      on-profile: suyh,suyh_mac
+
+# 目前暂时没用到redis
+
+

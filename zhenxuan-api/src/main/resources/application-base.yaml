@@ -1,0 +1,54 @@
+eb:
+  base:
+    token-seconds: 36000
+    file:
+      local:
+        dir: "/tmp/cem"
+      oss:
+        region: "cn-shenzhen"
+        # 公网访问
+        # endpoint: "https://oss-cn-shenzhen.aliyuncs.com"
+        # 内网访问
+        endpoint: "https://oss-cn-shenzhen-internal.aliyuncs.com"
+        bucket-name: "suyh-shenzhen-public"
+
+---
+spring:
+  config:
+    activate:
+      on-profile: suyh
+
+
+eb:
+  base:
+    captcha:
+      two-factor-auth-enabled: false
+    file:
+      local:
+        dir: "/tmp/cem"
+
+---
+spring:
+  config:
+    activate:
+      on-profile: suyh_mac
+
+
+eb:
+  base:
+    captcha:
+      two-factor-auth-enabled: false
+
+
+---
+spring:
+  config:
+    activate:
+      on-profile: suyh_dev
+
+eb:
+  base:
+    captcha:
+      two-factor-auth-enabled: false
+
+

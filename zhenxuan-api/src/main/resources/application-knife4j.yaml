@@ -1,0 +1,77 @@
+
+
+knife4j:
+  enable: false
+  setting:
+    language: zh_cn
+
+
+# swagger 页面访问： http://localhost:${server.servlet.context-path}/doc.html
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    operations-sorter: alpha
+  api-docs:
+    path: /v3/api-docs
+  group-configs:
+    # 分组信息也可以在这里配置，在代码的配置类里面配置也是可以的。
+    - group: 'ruoyi-system-online'
+      paths-to-match:
+        - "/system/online/**"
+      packages-to-scan:
+        - "com.eb.rouyi.controller"
+    - group: 'ruoyi-system-menu'
+      paths-to-match:
+        - "/system/menu/**"
+      packages-to-scan:
+        - "com.eb.rouyi.controller"
+    - group: 'user'
+      paths-to-match:
+        - "/user/**"
+      packages-to-scan:
+        - "com.eb.system.controller"
+    - group: 'role'
+      paths-to-match:
+        - "/role/**"
+      packages-to-scan:
+        - "com.eb.system.controller"
+    - group: 'file-system-local'
+      paths-to-match:
+        - "/system/file/local/**"
+      packages-to-scan:
+        - "com.eb.system.controller"
+    - group: 'file-system-oss'
+      paths-to-match:
+        - "/system/file/oss/**"
+      packages-to-scan:
+        - "com.eb.system.controller"
+    - group: "weight-config"
+      paths-to-match:
+        - "/weight/config/**"
+      packages-to-scan:
+        - "com.eb.business.controller"
+    - group: "product-attr-category"
+      paths-to-match:
+        - "/product/attr/category/**"
+      packages-to-scan:
+        - "com.eb.business.controller"
+    - group: "product-attr-detail"
+      paths-to-match:
+        - "/product/attr/detail/**"
+      packages-to-scan:
+        - "com.eb.business.controller"
+
+
+---
+spring:
+  config:
+    activate:
+      on-profile: suyh,suyh_dev,dev,suyh_mac
+
+knife4j:
+  enable: true
+
+
+
+

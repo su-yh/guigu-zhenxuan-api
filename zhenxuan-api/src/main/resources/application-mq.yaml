@@ -1,0 +1,23 @@
+
+
+#---
+#spring:
+#  config:
+#    activate:
+#      on-profile: suyh,suyh_dev,suyh_mac
+#
+#  rabbitmq:
+#    host: "isuyh.com"
+#    port: 5672
+#    username: "admin"
+#    password: "adminadmin"
+#    virtual-host: "/suyhHost"
+#    template:
+#      exchange: "suyhExchange"
+#      routing-key: "suyhRoutingKey"
+#      default-receive-queue: "defaultQueue"
+#    listener:
+#      simple:
+#        acknowledge-mode: manual
+#    dynamic: false
+#

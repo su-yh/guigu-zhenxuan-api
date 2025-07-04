@@ -1,0 +1,33 @@
+package com.eb.rouyi.mapper;
+
+import com.eb.mp.mybatis.BaseMapperX;
+import com.eb.mp.mybatis.LambdaQueryWrapperX;
+import com.eb.rouyi.entity.SysUserRoleEntity;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.lang.Nullable;
+
+import java.util.List;
+
+@Mapper
+public interface SysUserRoleMapper extends BaseMapperX<SysUserRoleEntity> {
+    default List<SysUserRoleEntity> selectRoleList(@Nullable Long userId) {
+        if (userId == null) {
+            return null;
+        }
+
+        LambdaQueryWrapperX<SysUserRoleEntity> queryWrapperX = build();
+        queryWrapperX.eq(SysUserRoleEntity::getUserId, userId);
+        return selectList(queryWrapperX);
+    }
+
+    default void deleteByUserId(@Nullable Long userId) {
+        if (userId == null) {
+            return;
+        }
+
+        LambdaQueryWrapperX<SysUserRoleEntity> queryWrapperX = build();
+        queryWrapperX.eq(SysUserRoleEntity::getUserId, userId);
+
+        delete(queryWrapperX);
+    }
+}

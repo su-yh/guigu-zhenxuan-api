@@ -1,0 +1,8 @@
+
+spring:
+  flyway:
+    # 这里必须是false，因为有多数据源的情况，需要手动配置对应的多 flyway
+    enabled: false
+
+
+
