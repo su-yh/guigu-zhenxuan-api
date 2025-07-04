@@ -1,10 +1,10 @@
 package com.eb.system.service;
 
-import com.eb.constant.ErrorCodeConstants;
-import com.eb.mvc.exception.ExceptionUtil;
+import com.base.web.exception.ExceptionUtil;
 import com.eb.rouyi.entity.SysUserRoleEntity;
-import com.eb.rouyi.mapper.SysUserRoleMapper;
+import com.eb.rouyi.mapper.ApiSysUserRoleMapper;
 import com.eb.system.dto.req.UserRoleListReqDto;
+import com.web.sys.constants.enums.SysWebErrorCodeEnums;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.lang.Nullable;
@@ -18,15 +18,15 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 public class SysUserRoleService {
-    private final SysUserRoleMapper sysUserRoleMapper;
+    private final ApiSysUserRoleMapper apiSysUserRoleMapper;
 
     public List<SysUserRoleEntity> selectRoleList(@Nullable Long userId) {
-        return sysUserRoleMapper.selectRoleList(userId);
+        return apiSysUserRoleMapper.selectRoleList(userId);
     }
 
     @Transactional
     public void updateUserRoleList(UserRoleListReqDto userRoleListReqDto) {
-        sysUserRoleMapper.deleteByUserId(userRoleListReqDto.getUserId());
+        apiSysUserRoleMapper.deleteByUserId(userRoleListReqDto.getUserId());
 
         List<Long> roleIds = userRoleListReqDto.getRoleIds();
         if (roleIds == null || roleIds.isEmpty()) {
@@ -36,7 +36,7 @@ public class SysUserRoleService {
         List<SysUserRoleEntity> userRoleEntities = new ArrayList<>();
         for (Long roleId : roleIds) {
             if (roleId == null) {
-                throw ExceptionUtil.business(ErrorCodeConstants.PARAMETER_ERROR_PARAM, "roleId cannot be null");
+                throw ExceptionUtil.business(SysWebErrorCodeEnums.PARAMETER_ERROR_PARAM, "roleId cannot be null");
             }
 
             SysUserRoleEntity entity = new SysUserRoleEntity();
@@ -45,6 +45,6 @@ public class SysUserRoleService {
             userRoleEntities.add(entity);
         }
 
-        sysUserRoleMapper.insertBatch(userRoleEntities);
+        apiSysUserRoleMapper.insertBatch(userRoleEntities);
     }
 }

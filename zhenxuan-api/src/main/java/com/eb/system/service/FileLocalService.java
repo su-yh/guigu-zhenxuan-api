@@ -1,8 +1,9 @@
 package com.eb.system.service;
 
+import com.base.web.constants.enums.BaseWebErrorCodeEnums;
+import com.base.web.exception.ExceptionUtil;
 import com.eb.config.base.properties.BaseProperties;
-import com.eb.constant.ErrorCodeConstants;
-import com.eb.mvc.exception.ExceptionUtil;
+import com.web.sys.constants.enums.SysWebErrorCodeEnums;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FilenameUtils;
@@ -51,7 +52,7 @@ public class FileLocalService {
             return extension;
         } catch (Exception exception) {
             log.error("transferTo failed, filepath: {}", filePath, exception);
-            throw ExceptionUtil.business(ErrorCodeConstants.SERVICE_ERROR);
+            throw ExceptionUtil.business(BaseWebErrorCodeEnums.SERVICE_ERROR);
         }
     }
 
@@ -61,7 +62,7 @@ public class FileLocalService {
 
         File file = new File(filePath);
         if (!file.exists()) {
-            throw ExceptionUtil.business(ErrorCodeConstants.FILE_NOT_EXISTS, filePath);
+            throw ExceptionUtil.business(SysWebErrorCodeEnums.FILE_NOT_EXISTS, filePath);
         }
         response.reset();
         response.setContentType(MediaType.APPLICATION_OCTET_STREAM_VALUE);
@@ -79,7 +80,7 @@ public class FileLocalService {
             }
         } catch (IOException exception) {
             log.error("write file failed, file path: {}", filePath, exception);
-            throw ExceptionUtil.business(ErrorCodeConstants.SERVICE_ERROR);
+            throw ExceptionUtil.business(BaseWebErrorCodeEnums.SERVICE_ERROR);
         }
     }
 }

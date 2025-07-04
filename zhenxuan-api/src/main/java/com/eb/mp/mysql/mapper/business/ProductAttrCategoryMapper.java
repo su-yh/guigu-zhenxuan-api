@@ -1,7 +1,7 @@
 package com.eb.mp.mysql.mapper.business;
 
-import com.eb.mp.mybatis.BaseMapperX;
-import com.eb.mp.mybatis.LambdaQueryWrapperX;
+import com.base.mp.mybatis.BaseMapperX;
+import com.base.mp.mybatis.LambdaQueryWrapperX;
 import com.eb.mp.mysql.entity.business.ProductAttrCategoryEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.lang.Nullable;

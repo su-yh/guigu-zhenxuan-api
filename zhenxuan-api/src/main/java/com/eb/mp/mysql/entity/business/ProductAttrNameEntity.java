@@ -3,7 +3,7 @@ package com.eb.mp.mysql.entity.business;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.eb.group.ValidationGroups;
+import com.base.web.validation.groups.ValidationGroups;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;

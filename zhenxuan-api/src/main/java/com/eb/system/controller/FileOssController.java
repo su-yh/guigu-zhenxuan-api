@@ -1,9 +1,9 @@
 package com.eb.system.controller;
 
-import com.eb.mvc.authentication.CurrLoginUser;
-import com.eb.mvc.authentication.LoginUser;
-import com.eb.mvc.vo.ResponseResult;
+import com.base.web.response.dto.R;
 import com.eb.system.service.FileOssService;
+import com.web.sys.authentication.annotation.CurrLoginUser;
+import com.web.sys.authentication.user.LoginUser;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -33,10 +33,10 @@ public class FileOssController {
 
     @Operation(summary = "文件上传")
     @RequestMapping(value = FileOssController.API_UPLOAD, method = RequestMethod.POST)
-    public ResponseResult<String> uploadFiles(
+    public R<String> uploadFiles(
             @Parameter(hidden = true) @CurrLoginUser LoginUser loginUser,
             @RequestParam(value = "file") MultipartFile file) {
         String path = fileOssService.uploadFile(file, loginUser);
-        return ResponseResult.ofSuccess(path);
+        return R.ofSuccess(path);
     }
 }

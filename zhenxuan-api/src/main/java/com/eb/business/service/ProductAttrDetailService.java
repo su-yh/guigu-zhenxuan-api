@@ -1,13 +1,13 @@
 package com.eb.business.service;
 
 
+import com.base.web.exception.ExceptionUtil;
 import com.eb.business.dto.product.attr.ProductAttrDetailDto;
-import com.eb.constant.ErrorCodeConstants;
+import com.eb.constant.enums.ApiErrorCodeEnums;
 import com.eb.mp.mysql.entity.business.ProductAttrNameEntity;
 import com.eb.mp.mysql.entity.business.ProductAttrValueEntity;
 import com.eb.mp.mysql.mapper.business.ProductAttrNameMapper;
 import com.eb.mp.mysql.mapper.business.ProductAttrValueMapper;
-import com.eb.mvc.exception.ExceptionUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.lang.NonNull;
@@ -63,7 +63,7 @@ public class ProductAttrDetailService {
         ProductAttrNameEntity nameEntity = dto.getProductAttrNameEntity();
         ProductAttrNameEntity historyEntity = productAttrNameMapper.selectById(nameEntity.getId());
         if (historyEntity == null) {
-            throw ExceptionUtil.business(ErrorCodeConstants.RECORD_NOT_EXISTS, nameEntity.getId());
+            throw ExceptionUtil.business(ApiErrorCodeEnums.RECORD_NOT_EXISTS, nameEntity.getId());
         }
 
         productAttrNameMapper.updateById(nameEntity);

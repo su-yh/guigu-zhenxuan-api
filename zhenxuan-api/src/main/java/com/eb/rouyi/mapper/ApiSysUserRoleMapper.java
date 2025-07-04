@@ -1,7 +1,7 @@
 package com.eb.rouyi.mapper;
 
-import com.eb.mp.mybatis.BaseMapperX;
-import com.eb.mp.mybatis.LambdaQueryWrapperX;
+import com.base.mp.mybatis.BaseMapperX;
+import com.base.mp.mybatis.LambdaQueryWrapperX;
 import com.eb.rouyi.entity.SysUserRoleEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.lang.Nullable;
@@ -9,7 +9,7 @@ import org.springframework.lang.Nullable;
 import java.util.List;
 
 @Mapper
-public interface SysUserRoleMapper extends BaseMapperX<SysUserRoleEntity> {
+public interface ApiSysUserRoleMapper extends BaseMapperX<SysUserRoleEntity> {
     default List<SysUserRoleEntity> selectRoleList(@Nullable Long userId) {
         if (userId == null) {
             return null;

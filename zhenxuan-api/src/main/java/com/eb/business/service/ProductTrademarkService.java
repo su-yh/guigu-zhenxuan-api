@@ -1,7 +1,7 @@
 package com.eb.business.service;
 
-import com.eb.mp.mybatis.PageParam;
-import com.eb.mp.mybatis.PageResult;
+import com.base.mp.mybatis.PageParam;
+import com.base.mp.mybatis.PageResult;
 import com.eb.mp.mysql.entity.business.ProductTrademarkEntity;
 import com.eb.mp.mysql.mapper.business.ProductTrademarkMapper;
 import lombok.RequiredArgsConstructor;

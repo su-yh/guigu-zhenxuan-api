@@ -1,8 +1,8 @@
 package com.eb.system.controller;
 
+import com.base.web.response.dto.R;
+import com.base.web.validation.groups.ValidationGroups;
 import com.eb.business.dto.base.IdBody;
-import com.eb.group.ValidationGroups;
-import com.eb.mvc.vo.ResponseResult;
 import com.eb.rouyi.entity.SysRoleEntity;
 import com.eb.system.dto.req.UserRoleListReqDto;
 import com.eb.system.service.SysRoleService;
@@ -32,46 +32,46 @@ public class RoleController {
 
     @Operation(summary = "【角色管理】查询(所有)")
     @RequestMapping(value = "/listAll", method = RequestMethod.GET)
-    public ResponseResult<List<SysRoleEntity>> listAll() {
+    public R<List<SysRoleEntity>> listAll() {
         List<SysRoleEntity> roleEntities = sysRoleService.listAll();
 
-        return ResponseResult.ofSuccess(roleEntities);
+        return R.ofSuccess(roleEntities);
     }
 
     @Operation(summary = "【角色管理】更新用户角色列表")
     @RequestMapping(value = "/update/user/roleList", method = RequestMethod.POST)
-    public ResponseResult<Long> updateUserRoleList(
+    public R<Long> updateUserRoleList(
             @RequestBody @Validated UserRoleListReqDto userRoleListReqDto) {
         sysUserRoleService.updateUserRoleList(userRoleListReqDto);
 
-        return ResponseResult.ofSuccess(userRoleListReqDto.getUserId());
+        return R.ofSuccess(userRoleListReqDto.getUserId());
     }
 
     @Operation(summary = "【角色管理】创建角色")
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public ResponseResult<Long> create(
+    public R<Long> create(
             @RequestBody @Validated({ValidationGroups.Req.Create.class, Default.class}) SysRoleEntity entity) {
         Long id = sysRoleService.create(entity);
 
-        return ResponseResult.ofSuccess(id);
+        return R.ofSuccess(id);
     }
 
     @Operation(summary = "【角色管理】修改角色")
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public ResponseResult<Long> update(
+    public R<Long> update(
             @RequestBody @Validated({ValidationGroups.Req.Update.class, Default.class}) SysRoleEntity entity) {
         sysRoleService.update(entity);
 
-        return ResponseResult.ofSuccess(entity.getRoleId());
+        return R.ofSuccess(entity.getRoleId());
     }
 
     @Operation(summary = "【角色管理】删除角色")
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
-    public ResponseResult<Long> delete(
+    public R<Long> delete(
             @RequestBody IdBody idBody) {
         sysRoleService.delete(idBody.getId());
 
-        return ResponseResult.ofSuccess(idBody.getId());
+        return R.ofSuccess(idBody.getId());
     }
 
 }

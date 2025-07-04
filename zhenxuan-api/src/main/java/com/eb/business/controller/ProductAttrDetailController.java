@@ -1,8 +1,8 @@
 package com.eb.business.controller;
 
+import com.base.web.validation.groups.ValidationGroups;
 import com.eb.business.dto.product.attr.ProductAttrDetailDto;
 import com.eb.business.service.ProductAttrDetailService;
-import com.eb.group.ValidationGroups;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;

@@ -1,10 +1,10 @@
 package com.eb.business.controller;
 
+import com.base.mp.mybatis.PageParam;
+import com.base.mp.mybatis.PageResult;
+import com.base.web.validation.groups.ValidationGroups;
 import com.eb.business.dto.base.IdBody;
 import com.eb.business.service.ProductTrademarkService;
-import com.eb.group.ValidationGroups;
-import com.eb.mp.mybatis.PageParam;
-import com.eb.mp.mybatis.PageResult;
 import com.eb.mp.mysql.entity.business.ProductTrademarkEntity;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

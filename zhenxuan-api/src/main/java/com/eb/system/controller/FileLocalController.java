@@ -1,10 +1,10 @@
 package com.eb.system.controller;
 
-import com.eb.mvc.authentication.annotation.Permit;
-import com.eb.mvc.response.annotation.WrapperResponseAdvice;
-import com.eb.mvc.vo.ResponseResult;
+import com.base.web.response.annotation.WrapperResponseAdvice;
+import com.base.web.response.dto.R;
+import com.base.web.util.DateUtils;
 import com.eb.system.service.FileLocalService;
-import com.eb.util.DateUtils;
+import com.web.sys.authentication.annotation.Permit;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -36,12 +36,12 @@ public class FileLocalController {
 
     @Operation(summary = "文件上传")
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
-    public ResponseResult<String> uploadFiles(@RequestParam(value = "file") MultipartFile file) {
+    public R<String> uploadFiles(@RequestParam(value = "file") MultipartFile file) {
         Integer dates = DateUtils.convertToInteger(LocalDate.now());
         String uuidFileName = UUID.randomUUID().toString().replaceAll("-", "");
         String suffix = fileLocalService.uploadFile(file, dates, uuidFileName);
         String res = String.format("/system/file/download/%d/%s", dates, uuidFileName + suffix);
-        return ResponseResult.ofSuccess(res);
+        return R.ofSuccess(res);
     }
 
     // 文件上传之后会把路径写到数据库中，所以这里的WEB API 的路径不能修改。

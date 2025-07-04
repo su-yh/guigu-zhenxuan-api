@@ -1,17 +1,7 @@
 package com.eb.runner;
 
-import com.eb.constant.enums.AuditRecordTypeEnums;
 import com.eb.constant.enums.DaysOfWeekEnums;
-import com.eb.constant.enums.EnableStatusEnums;
 import com.eb.constant.enums.HourOfDayEnums;
-import com.eb.constant.enums.OnlineStateEnums;
-import com.eb.constant.enums.OrderAuditStatusEnums;
-import com.eb.constant.enums.PayTypeEnums;
-import com.eb.constant.enums.PresentStatusEnums;
-import com.eb.constant.enums.ShowStatusEnums;
-import com.eb.constant.enums.SvipAuditStatusEnums;
-import com.eb.constant.enums.TransferStatusEnums;
-import com.eb.constant.enums.VipTypeEnums;
 import com.eb.constant.enums.YesOrNoEnums;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -41,19 +31,9 @@ import java.util.concurrent.atomic.AtomicLong;
 @Slf4j
 public class TestDataInitRunner implements ApplicationRunner {
     public final static Random RANDOM = new Random();
-    public final static EnumsRandom<EnableStatusEnums> ENABLE_STATUS_ENUMS_RANDOM = new EnumsRandom<>(EnableStatusEnums.values());
-    public final static EnumsRandom<ShowStatusEnums> SHOW_STATUS_ENUMS_RANDOM = new EnumsRandom<>(ShowStatusEnums.values());
-    public final static EnumsRandom<OnlineStateEnums> ONLINE_STATUS_ENUMS_RANDOM = new EnumsRandom<>(OnlineStateEnums.values());
     public final static EnumsRandom<DaysOfWeekEnums> DAYS_OF_WEEK_ENUMS_RANDOM = new EnumsRandom<>(DaysOfWeekEnums.values());
     public final static EnumsRandom<HourOfDayEnums> HOUR_OF_DAY_ENUMS_RANDOM = new EnumsRandom<>(HourOfDayEnums.values());
-    public final static EnumsRandom<SvipAuditStatusEnums> AUDIT_STATUS_ENUMS_RANDOM = new EnumsRandom<>(SvipAuditStatusEnums.values());
-    public final static EnumsRandom<VipTypeEnums> VIP_TYPE_ENUMS_RANDOM = new EnumsRandom<>(VipTypeEnums.values());
     public final static EnumsRandom<YesOrNoEnums> YES_OR_NO_ENUMS_RANDOM = new EnumsRandom<>(YesOrNoEnums.values());
-    public final static EnumsRandom<PayTypeEnums> PAY_TYPE_ENUMS_RANDOM = new EnumsRandom<>(PayTypeEnums.values());
-    public final static EnumsRandom<TransferStatusEnums> TRANSFER_STATUS_ENUMS_RANDOM = new EnumsRandom<>(TransferStatusEnums.values());
-    public final static EnumsRandom<PresentStatusEnums> PRESENT_STATUS_ENUMS_RANDOM = new EnumsRandom<>(PresentStatusEnums.values());
-    public final static EnumsRandom<OrderAuditStatusEnums> ORDER_AUDIT_STATUS_ENUMS_RANDOM = new EnumsRandom<>(OrderAuditStatusEnums.values());
-    public final static EnumsRandom<AuditRecordTypeEnums> AUDIT_RECORD_TYPE_ENUMS_RANDOM = new EnumsRandom<>(AuditRecordTypeEnums.values());
 
     private static final AtomicLong baseIdNumber = new AtomicLong(0);
 

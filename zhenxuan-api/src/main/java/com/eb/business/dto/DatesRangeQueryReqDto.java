@@ -1,6 +1,6 @@
 package com.eb.business.dto;
 
-import com.eb.util.DateUtils;
+import com.base.web.util.DateUtils;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import org.springframework.lang.NonNull;

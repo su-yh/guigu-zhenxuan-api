@@ -21,6 +21,7 @@ biz:
         driver-class-name: com.mysql.cj.jdbc.Driver
         flyway:
           enabled: true
+          out-of-order: true
           locations:
             - "sqls/mysql"
 

@@ -6,11 +6,12 @@ import com.aliyun.oss.OSSClientBuilder;
 import com.aliyun.oss.common.auth.CredentialsProviderFactory;
 import com.aliyun.oss.common.auth.EnvironmentVariableCredentialsProvider;
 import com.aliyun.oss.model.PutObjectRequest;
+import com.base.web.constants.enums.BaseWebErrorCodeEnums;
+import com.base.web.exception.ExceptionUtil;
 import com.eb.config.base.properties.BaseProperties;
 import com.eb.config.base.properties.nested.FileOssProperties;
-import com.eb.constant.ErrorCodeConstants;
-import com.eb.mvc.authentication.LoginUser;
-import com.eb.mvc.exception.ExceptionUtil;
+import com.eb.constant.enums.ApiErrorCodeEnums;
+import com.web.sys.authentication.user.LoginUser;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -67,7 +68,7 @@ public class FileOssService {
             DataSize dataSize = DataSize.ofBytes(file.getSize());
             long mb = dataSize.toMegabytes();
             if (mb > 5) {
-                throw ExceptionUtil.business(ErrorCodeConstants.FILE_TOO_LARGE);
+                throw ExceptionUtil.business(ApiErrorCodeEnums.FILE_TOO_LARGE);
             }
 
             String bucketName = baseProperties.getFile().getOss().getBucketName();
@@ -91,7 +92,7 @@ public class FileOssService {
             return "https://isuyh.com/suyh/static/" + key;
         } catch (ClientException | IOException ce) {
             log.error("OSS: uploadFile failed");
-            throw ExceptionUtil.business(ErrorCodeConstants.SERVICE_ERROR);
+            throw ExceptionUtil.business(BaseWebErrorCodeEnums.SERVICE_ERROR);
         }
     }
 }
