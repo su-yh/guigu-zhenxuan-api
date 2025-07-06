@@ -5,28 +5,32 @@ spring:
       strict: true
       primary: "master"
 
+
+base:
+  datasource:
+    hikari:
+      master:
+        flyway:
+          out-of-order: true
+
 ---
 spring:
   config:
     activate:
       on-profile: suyh,suyh_mac
 
-biz:
+base:
   datasource:
-    multi:
+    hikari:
       master:
-        jdbc-url: jdbc:mysql://isuyh.com:3306/study_vue?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
+        jdbc-url: jdbc:mysql://isuyh.com:3306/study_vue?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=Asia/Shanghai
         username: study_vue
         password: study_vue
-        driver-class-name: com.mysql.cj.jdbc.Driver
         flyway:
           enabled: true
-          out-of-order: true
           locations:
+            - "sqls/mysql/sys/base"
             - "sqls/mysql"
-
-
-
 
 
 
