@@ -2,11 +2,11 @@ package com.eb.system.controller;
 
 import com.base.web.response.dto.R;
 import com.base.web.validation.groups.ValidationGroups;
-import com.eb.business.dto.base.IdBody;
 import com.eb.rouyi.entity.SysRoleEntity;
 import com.eb.system.dto.req.UserRoleListReqDto;
 import com.eb.system.service.SysRoleService;
 import com.eb.system.service.SysUserRoleService;
+import com.web.sys.dto.base.IdBody;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
