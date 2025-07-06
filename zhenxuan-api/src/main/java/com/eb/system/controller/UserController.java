@@ -8,8 +8,11 @@ import com.eb.rouyi.entity.SysUserEntity;
 import com.eb.system.dto.rsp.UserRspDto;
 import com.eb.system.service.UserService;
 import com.web.ruoyi.mybatis.entity.SysUser;
+import com.web.sys.authentication.annotation.CurrLoginUser;
+import com.web.sys.authentication.user.LoginUser;
 import com.web.sys.dto.base.IdBody;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -37,6 +40,12 @@ public class UserController {
     @Resource(name = "userZhunXuanService")
     private UserService userService;
 
+    @Operation(summary = "登录用户信息")
+    @RequestMapping(value = "/info", method = RequestMethod.GET)
+    public R<SysUser> getInfo(
+            @Parameter(hidden = true) @CurrLoginUser LoginUser loginUser) {
+        return R.ofSuccess(loginUser.getUser());
+    }
 
     @Operation(summary = "【用户管理】查询(分页)")
     @RequestMapping(value = "/listPage", method = RequestMethod.GET)
