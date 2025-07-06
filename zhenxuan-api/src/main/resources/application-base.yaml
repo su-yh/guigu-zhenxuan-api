@@ -1,6 +1,5 @@
 eb:
   base:
-    token-seconds: 36000
     file:
       local:
         dir: "/tmp/cem"
@@ -12,6 +11,14 @@ eb:
         endpoint: "https://oss-cn-shenzhen-internal.aliyuncs.com"
         bucket-name: "suyh-shenzhen-public"
 
+
+sys:
+  web:
+    user:
+      captcha:
+        two-factor-auth-enabled: false
+
+
 ---
 spring:
   config:
@@ -21,8 +28,6 @@ spring:
 
 eb:
   base:
-    captcha:
-      two-factor-auth-enabled: false
     file:
       local:
         dir: "/tmp/cem"
@@ -34,10 +39,6 @@ spring:
       on-profile: suyh_mac
 
 
-eb:
-  base:
-    captcha:
-      two-factor-auth-enabled: false
 
 
 ---
@@ -45,10 +46,4 @@ spring:
   config:
     activate:
       on-profile: suyh_dev
-
-eb:
-  base:
-    captcha:
-      two-factor-auth-enabled: false
-
 

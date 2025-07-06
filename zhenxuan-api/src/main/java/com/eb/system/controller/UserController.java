@@ -1,11 +1,10 @@
-package com.web.sys.controller;
+package com.eb.system.controller;
 
 import com.base.web.response.dto.R;
+import com.base.web.validation.groups.ValidationGroups;
+import com.web.ruoyi.mybatis.entity.SysUser;
 import com.web.sys.authentication.annotation.CurrLoginUser;
-import com.web.sys.authentication.annotation.Permit;
 import com.web.sys.authentication.user.LoginUser;
-import com.web.sys.dto.base.IdBody;
-import com.web.sys.dto.user.req.UserLoginReqDto;
 import com.web.sys.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -18,12 +17,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.groups.Default;
+
 /**
  * @author suyh
  * @since 2024-09-02
  */
 @Tag(name = "用户")
-@RestController
+@RestController("userZhenXuanController")
 @RequestMapping("/user")
 @RequiredArgsConstructor
 @Validated
@@ -31,34 +32,47 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
     private final UserService userService;
 
-    @Operation(summary = "用户登录")
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    @Permit(required = false)
-    public R<String> login(@RequestBody @Validated UserLoginReqDto userLogin) {
-        String token = userService.login(
-                userLogin.getUsername(), userLogin.getPassword(), userLogin.getCode());
-        return R.ofSuccess(token);
-    }
 
-    @Operation(summary = "用户登出")
-    @RequestMapping(value = "/logout", method = RequestMethod.POST)
-    @Permit(required = false)
-    public R<Boolean> logout() {
-        return R.ofSuccess();
-    }
-
-    @Operation(summary = "重置2FA：用户ID")
-    @RequestMapping(value = "/reset/twoFactorAuthKey/byId", method = RequestMethod.POST)
-    public R<String> resetTwoFactorAuthKeyById(@RequestBody @Validated IdBody idBody) {
-        String fa = userService.resetTwoFactorAuthKey(idBody.getId());
-        return R.ofSuccess(fa);
-    }
-
-    @Operation(summary = "重置2FA：当前登录用户")
-    @RequestMapping(value = "/reset/twoFactorAuthKey/self", method = RequestMethod.POST)
-    public R<String> resetTwoFactorAuthKeySelf(
+    @Operation(summary = "登录用户信息")
+    @RequestMapping(value = "/info", method = RequestMethod.GET)
+    public R<SysUser> getInfo(
             @Parameter(hidden = true) @CurrLoginUser LoginUser loginUser) {
-        String key = userService.resetTwoFactorAuthKey(loginUser.getId());
-        return R.ofSuccess(key);
+        return R.ofSuccess(loginUser.getUser());
     }
+
+//    @Operation(summary = "【用户管理】查询(分页)")
+//    @RequestMapping(value = "/listPage", method = RequestMethod.GET)
+//    public R<PageResult<UserRspDto>> listPage(
+//            PageParam pageParam, @RequestParam(required = false) String nameLike) {
+//        PageResult<UserRspDto> pageResult = userService.listPage(pageParam, nameLike);
+//        return R.ofSuccess(pageResult);
+//    }
+
+
+    @Operation(summary = "【用户管理】创建用户")
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    public R<Long> create(
+            @RequestBody @Validated({ValidationGroups.Req.Create.class, Default.class}) SysUser entity) {
+        userService.createUser(entity);
+
+        return R.ofSuccess(entity.getId());
+    }
+
+//    @Operation(summary = "【用户管理】更新用户")
+//    @RequestMapping(value = "/update", method = RequestMethod.POST)
+//    public R<Long> update(
+//            @RequestBody @Validated({ValidationGroups.Req.Update.class, Default.class}) SysUser entity) {
+//        userService.updateUser(entity);
+//
+//        return R.ofSuccess(entity.getId());
+//    }
+//
+//    @Operation(summary = "【用户管理】删除用户")
+//    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+//    public R<Long> delete(
+//            @RequestBody @Validated IdBody idBody) {
+//        userService.deleteUser(idBody.getId());
+//
+//        return R.ofSuccess(idBody.getId());
+//    }
 }

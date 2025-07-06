@@ -16,6 +16,7 @@ public class FileLocalProperties {
     @NotBlank
     private String dir;
 
+    @SuppressWarnings("unused")
     public FileLocalProperties setDir(String dir) {
         // 补充上尾巴上的 "/"
         if (!StringUtils.hasText(dir.trim())) {
