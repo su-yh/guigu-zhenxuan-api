@@ -30,7 +30,7 @@ base:
           enabled: true
           locations:
             - "sqls/mysql/sys/base"
-            - "sqls/mysql"
+            - "sqls/zhenxuan/mysql"
 
 
 
