@@ -167,18 +167,54 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>pl.project13.maven</groupId>
+                <artifactId>git-commit-id-plugin</artifactId>
+                <version>4.0.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>revision</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <verbose>true</verbose>
+                    <generateGitPropertiesFile>true</generateGitPropertiesFile>
+                    <injectAllReactorProjects>true</injectAllReactorProjects>
+                    <excludeProperties>
+                        <excludeProperty>^git.local.branch.*$</excludeProperty>
+                        <excludeProperty>git.build.host</excludeProperty>
+                        <excludeProperty>^git.build.user.*$</excludeProperty>
+                        <excludeProperty>^git.commit.user.*$</excludeProperty>
+                        <excludeProperty>^git.commit.message.*$</excludeProperty>
+                        <excludeProperty>git.remote.origin.url</excludeProperty>
+                    </excludeProperties>
+                </configuration>
+            </plugin>
+
+            <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot.version}</version>
                 <configuration>
                     <!-- 排除开发工具依赖 -->
                     <excludeDevtools>true</excludeDevtools>
-                    <!-- 打包lib 目录时，将这个注释掉打包。 -->
-                    <!-- 使用这种方式的好处是可以将二方依赖jar 打包到一起运行，而不是形成jar 文件 -->
                     <includes>
                         <include>
-                            <groupId>nothing</groupId>
-                            <artifactId>nothing</artifactId>
+                            <groupId>com.base</groupId>
+                            <artifactId>sys-web-spring-boot-starter</artifactId>
+                        </include>
+                        <include>
+                            <groupId>com.base</groupId>
+                            <artifactId>base-dynamic-datasource-spring-boot-starter</artifactId>
+                        </include>
+                        <include>
+                            <groupId>com.base</groupId>
+                            <artifactId>base-mybatis-plus-spring-boot-starter</artifactId>
+                        </include>
+                        <include>
+                            <groupId>com.base</groupId>
+                            <artifactId>base-web-spring-boot-starter</artifactId>
                         </include>
                     </includes>
                 </configuration>
@@ -186,6 +222,29 @@
                     <execution>
                         <goals>
                             <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- The configuration of maven-assembly-plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.4</version>
+                <!-- The configuration of the plugin -->
+                <configuration>
+                    <!-- Specifies the configuration file of the assembly plugin -->
+                    <descriptors>
+                        <descriptor>package.xml</descriptor>
+                    </descriptors>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
                         </goals>
                     </execution>
                 </executions>
