@@ -1,3 +1,6 @@
 [submodule "web-spring-boot-starter"]
 	path = web-spring-boot-starter
 	url = https://github.com/su-yh/web-spring-boot-starter.git
+	branch = develop
+
+
