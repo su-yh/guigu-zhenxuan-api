@@ -17,6 +17,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.groups.Default;
@@ -34,8 +35,10 @@ public class RoleController {
 
     @Operation(summary = "【角色管理】查询(分页)")
     @RequestMapping(value = "/listPage", method = RequestMethod.GET)
-    public R<PageResult<SysRoleEntity>> listPage(PageParam pageParam) {
-        PageResult<SysRoleEntity> rolePageResult = sysRoleService.listPage(pageParam);
+    public R<PageResult<SysRoleEntity>> listPage(
+            PageParam pageParam,
+            @RequestParam(value = "keyword", required = false) String roleNameLike) {
+        PageResult<SysRoleEntity> rolePageResult = sysRoleService.listPage(pageParam, roleNameLike);
 
         return R.ofSuccess(rolePageResult);
     }

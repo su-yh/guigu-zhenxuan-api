@@ -24,8 +24,8 @@ public class SysRoleService {
     }
 
 
-    public PageResult<SysRoleEntity> listPage(PageParam pageParam) {
-        return sysRoleMapper.listPage(pageParam);
+    public PageResult<SysRoleEntity> listPage(PageParam pageParam, String roleNameLike) {
+        return sysRoleMapper.listPage(pageParam, roleNameLike);
     }
 
     public List<SysRoleEntity> listAll() {

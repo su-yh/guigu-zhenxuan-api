@@ -24,8 +24,9 @@ public interface ApiSysRoleMapper extends BaseMapperX<SysRoleEntity> {
         return selectList(queryWrapperX);
     }
 
-    default PageResult<SysRoleEntity> listPage(PageParam pageParam) {
+    default PageResult<SysRoleEntity> listPage(PageParam pageParam, String roleNameLike) {
         LambdaQueryWrapperX<SysRoleEntity> queryWrapperX = build();
+        queryWrapperX.likeIfPresent(SysRoleEntity::getRoleName, roleNameLike);
 
         return selectPage(pageParam, queryWrapperX);
     }
