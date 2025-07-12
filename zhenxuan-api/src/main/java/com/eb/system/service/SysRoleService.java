@@ -1,5 +1,7 @@
 package com.eb.system.service;
 
+import com.base.mp.mybatis.PageParam;
+import com.base.mp.mybatis.PageResult;
 import com.eb.rouyi.entity.SysRoleEntity;
 import com.eb.rouyi.mapper.ApiSysRoleMapper;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +21,11 @@ public class SysRoleService {
 
     public List<SysRoleEntity> selectRoleList(@Nullable Collection<Long> roleIds) {
         return sysRoleMapper.selectRoleList(roleIds);
+    }
+
+
+    public PageResult<SysRoleEntity> listPage(PageParam pageParam) {
+        return sysRoleMapper.listPage(pageParam);
     }
 
     public List<SysRoleEntity> listAll() {

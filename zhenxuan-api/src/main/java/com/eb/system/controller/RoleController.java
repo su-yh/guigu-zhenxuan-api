@@ -1,5 +1,7 @@
 package com.eb.system.controller;
 
+import com.base.mp.mybatis.PageParam;
+import com.base.mp.mybatis.PageResult;
 import com.base.web.response.dto.R;
 import com.base.web.validation.groups.ValidationGroups;
 import com.eb.rouyi.entity.SysRoleEntity;
@@ -29,6 +31,14 @@ import java.util.List;
 public class RoleController {
     private final SysRoleService sysRoleService;
     private final SysUserRoleService sysUserRoleService;
+
+    @Operation(summary = "【角色管理】查询(分页)")
+    @RequestMapping(value = "/listPage", method = RequestMethod.GET)
+    public R<PageResult<SysRoleEntity>> listPage(PageParam pageParam) {
+        PageResult<SysRoleEntity> rolePageResult = sysRoleService.listPage(pageParam);
+
+        return R.ofSuccess(rolePageResult);
+    }
 
     @Operation(summary = "【角色管理】查询(所有)")
     @RequestMapping(value = "/listAll", method = RequestMethod.GET)
