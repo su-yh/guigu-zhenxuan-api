@@ -6,7 +6,7 @@ import com.base.web.response.dto.R;
 import com.base.web.validation.groups.ValidationGroups;
 import com.eb.rouyi.entity.SysUserEntity;
 import com.eb.system.dto.rsp.UserRspDto;
-import com.eb.system.service.UserService;
+import com.eb.system.service.IZhenXuanUserService;
 import com.web.ruoyi.mybatis.entity.SysUser;
 import com.web.sys.authentication.annotation.CurrLoginUser;
 import com.web.sys.authentication.user.LoginUser;
@@ -37,8 +37,8 @@ import javax.validation.groups.Default;
 @Validated
 @Slf4j
 public class UserController {
-    @Resource(name = "userZhunXuanService")
-    private UserService userService;
+    @Resource
+    private IZhenXuanUserService userService;
 
     @Operation(summary = "登录用户信息")
     @RequestMapping(value = "/info", method = RequestMethod.GET)

@@ -8,8 +8,8 @@ import com.eb.rouyi.entity.SysUserEntity;
 import com.eb.rouyi.entity.SysUserRoleEntity;
 import com.eb.rouyi.mapper.SysUserZhenXuanMapper;
 import com.eb.system.dto.rsp.UserRspDto;
-import com.web.ruoyi.mybatis.entity.SysUser;
 import com.web.sys.constants.enums.SysWebErrorCodeEnums;
+import com.web.sys.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.lang.Nullable;
@@ -25,17 +25,16 @@ import java.util.stream.Collectors;
  * @author suyh
  * @since 2024-08-31
  */
-@Service("userZhunXuanService")
+@Service
 @RequiredArgsConstructor
 @Slf4j
-public class UserService {
+public class ZhenXuanUserService extends UserService implements IZhenXuanUserService {
     private final SysUserZhenXuanMapper userMapper;
 
     private final SysUserRoleService sysUserRoleService;
     private final SysRoleService sysRoleService;
 
-    private final com.web.sys.service.UserService userService;
-
+    @Override
     @Transactional
     public void updateUser(SysUserEntity sysUserEntity) {
         {
@@ -55,6 +54,7 @@ public class UserService {
         userMapper.updateById(sysUserEntity);
     }
 
+    @Override
     public PageResult<UserRspDto> listPage(PageParam pageParam, @Nullable String nameLike) {
         PageResult<SysUserEntity> pageResult = userMapper.listPage(pageParam, nameLike);
         if (pageResult.getTotal() <= 0) {
@@ -83,6 +83,7 @@ public class UserService {
         return new PageResult<>(rspDtoList, pageResult.getTotal().longValue());
     }
 
+    @Override
     @Transactional
     public void deleteUser(@Nullable Long id) {
         if (id == null) {
@@ -93,9 +94,5 @@ public class UserService {
 
         // TODO: suyh - 这里应该发一个删除用户事件，让用户相关的关联数据一起删除。
         //   但是这里就懒得做了，有空再说吧。
-    }
-
-    public void createUser(SysUser entity) {
-        userService.createUser(entity);
     }
 }
