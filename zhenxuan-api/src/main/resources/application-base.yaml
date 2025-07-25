@@ -33,6 +33,7 @@ eb:
         dir: "/tmp/bs"
       minio:
         endpoint: "http://minio.qu-yun.isuyh.com"
+        region: "cn-shenzhen-1"
         ak: "M4HGteCOYWk43AdyKlXN"
         sk: "JZnytJbJWQGyr0u05zJsRRc3VQqCDCGN6HAn4goJ"
 

@@ -16,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import javax.annotation.PreDestroy;
 import java.io.IOException;
@@ -47,10 +48,13 @@ public class FileMinioService {
 
             FileMinioProperties minioProperties = properties.getFile().getMinio();
 
-            minioClient = MinioClient.builder()
-                    .endpoint(minioProperties.getEndpoint())
-                    .credentials(minioProperties.getAk(), minioProperties.getSk())
-                    .build();
+            MinioClient.Builder builder = MinioClient.builder();
+            builder.endpoint(minioProperties.getEndpoint());
+            builder.credentials(minioProperties.getAk(), minioProperties.getSk());
+            if (StringUtils.hasText(minioProperties.getRegion())) {
+                builder.region(minioProperties.getRegion());
+            }
+            minioClient = builder.build();
         }
 
         return minioClient;
@@ -69,54 +73,19 @@ public class FileMinioService {
 
     public boolean makeBucket(@NonNull String bucketName) {
         try {
-            MinioClient minioClient = obtainMinioClient();
-
             MakeBucketArgs build = MakeBucketArgs.builder().bucket(bucketName).build();
-            minioClient.makeBucket(build);
+            obtainMinioClient().makeBucket(build);
             return true;
-        } catch (ErrorResponseException e) {
-            throw new RuntimeException(e);
-        } catch (InsufficientDataException e) {
-            throw new RuntimeException(e);
-        } catch (InternalException e) {
-            throw new RuntimeException(e);
-        } catch (InvalidKeyException e) {
-            throw new RuntimeException(e);
-        } catch (InvalidResponseException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
-        } catch (ServerException e) {
-            throw new RuntimeException(e);
-        } catch (XmlParserException e) {
+        } catch (ErrorResponseException | InsufficientDataException | InternalException | InvalidResponseException |
+                 InvalidKeyException | IOException | NoSuchAlgorithmException | ServerException | XmlParserException e) {
             throw new RuntimeException(e);
         }
     }
 
     public boolean foundBucket(@NonNull String bucketName) {
 
-        FileMinioProperties minioProperties = properties.getFile().getMinio();
-        // 初始化客户端
-        MinioClient minioClient = MinioClient.builder()
-//                .endpoint("http://minio.qu-yun.isuyh.com") // MinIO 服务地址（HTTP/HTTPS）
-//                .endpoint("http://211.101.244.187:9000") // MinIO 服务地址（HTTP/HTTPS）
-                .endpoint("http://qu-yun.isuyh.com:9000") // MinIO 服务地址（HTTP/HTTPS）
-                .credentials(minioProperties.getAk(), minioProperties.getSk()) // 访问密钥和密钥
-                .build();
-
-        // 验证连接（可选）
         try {
-//            String bucketName = "test";
-//            boolean exists = minioClient.bucketExists(BucketExistsArgs.builder().bucket(bucketName).build());
-            boolean found =
-                    minioClient.bucketExists(BucketExistsArgs.builder().bucket("test").build());
-
-            System.out.println("exists: " + found);
-//            boolean isConnected = minioClient.bucketExists(bucketExistsArgs -> bucketExistsArgs.bucket("test-bucket"));
-//            System.out.println("连接成功：" + isConnected);
-            return found;
+            return obtainMinioClient().bucketExists(BucketExistsArgs.builder().bucket(bucketName).build());
         } catch (MinioException e) {
             System.err.println("失败：" + e.getMessage());
             e.printStackTrace();
