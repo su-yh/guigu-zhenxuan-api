@@ -36,4 +36,9 @@ public class FileMinioServiceTest {
         boolean flag = fileMinioService.makeBucket("test2");
         Assertions.assertTrue(flag);
     }
+
+    @Test
+    public void listObjectsTest() {
+        fileMinioService.listObjects("test", "dir1/");
+    }
 }
