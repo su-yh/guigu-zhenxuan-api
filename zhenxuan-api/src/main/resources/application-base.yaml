@@ -23,7 +23,7 @@ sys:
 spring:
   config:
     activate:
-      on-profile: suyh
+      on-profile: suyh,suyh_mac
 
 
 eb:
@@ -35,13 +35,6 @@ eb:
         endpoint: "http://minio.qu-yun.isuyh.com"
         ak: "M4HGteCOYWk43AdyKlXN"
         sk: "JZnytJbJWQGyr0u05zJsRRc3VQqCDCGN6HAn4goJ"
-
----
-spring:
-  config:
-    activate:
-      on-profile: suyh_mac
-
 
 
 
