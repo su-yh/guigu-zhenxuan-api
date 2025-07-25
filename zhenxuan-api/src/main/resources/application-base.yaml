@@ -2,7 +2,7 @@ eb:
   base:
     file:
       local:
-        dir: "/tmp/cem"
+        dir: "/tmp/bus"
       oss:
         region: "cn-shenzhen"
         # 公网访问
@@ -30,7 +30,11 @@ eb:
   base:
     file:
       local:
-        dir: "/tmp/cem"
+        dir: "/tmp/bs"
+      minio:
+        endpoint: "http://minio.qu-yun.isuyh.com"
+        ak: "M4HGteCOYWk43AdyKlXN"
+        sk: "JZnytJbJWQGyr0u05zJsRRc3VQqCDCGN6HAn4goJ"
 
 ---
 spring:

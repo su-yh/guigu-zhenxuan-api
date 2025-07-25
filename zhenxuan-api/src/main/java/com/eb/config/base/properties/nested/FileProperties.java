@@ -20,4 +20,7 @@ public class FileProperties {
     @Valid
     private final FileOssProperties oss = new FileOssProperties();
 
+    @NestedConfigurationProperty
+    @Valid
+    private final FileMinioProperties minio = new FileMinioProperties();
 }

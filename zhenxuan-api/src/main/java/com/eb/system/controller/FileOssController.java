@@ -22,17 +22,15 @@ import org.springframework.web.multipart.MultipartFile;
  */
 @Tag(name = "【OSS】文件系统")
 @RestController
-@RequestMapping(FileOssController.API_PREV)
+@RequestMapping("/system/file/oss")
 @RequiredArgsConstructor
 @Validated
 @Slf4j
 public class FileOssController {
-    public static final String API_PREV = "/system/file/oss";
-    public static final String API_UPLOAD = "/upload";
     private final FileOssService fileOssService;
 
     @Operation(summary = "文件上传")
-    @RequestMapping(value = FileOssController.API_UPLOAD, method = RequestMethod.POST)
+    @RequestMapping(value = "/upload", method = RequestMethod.POST)
     public R<String> uploadFiles(
             @Parameter(hidden = true) @CurrLoginUser LoginUser loginUser,
             @RequestParam(value = "file") MultipartFile file) {
