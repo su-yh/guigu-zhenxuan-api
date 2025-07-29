@@ -140,7 +140,7 @@
         <dependency>
             <groupId>io.minio</groupId>
             <artifactId>minio</artifactId>
-            <version>8.5.17</version> <!-- 最新版本可参考官方文档 -->
+            <version>8.5.17</version>
         </dependency>
 
 
