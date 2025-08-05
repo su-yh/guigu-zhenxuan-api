@@ -3,7 +3,7 @@ package com.eb.system.service;
 import com.base.mp.mybatis.PageParam;
 import com.base.mp.mybatis.PageResult;
 import com.eb.rouyi.entity.SysRoleEntity;
-import com.eb.rouyi.mapper.ApiSysRoleMapper;
+import com.eb.rouyi.mapper.BizSysRoleMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.lang.Nullable;
@@ -16,7 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 public class SysRoleService {
-    private final ApiSysRoleMapper sysRoleMapper;
+    private final BizSysRoleMapper sysRoleMapper;
 
 
     public List<SysRoleEntity> selectRoleList(@Nullable Collection<Long> roleIds) {

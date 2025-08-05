@@ -6,7 +6,7 @@ import com.base.web.exception.ExceptionUtil;
 import com.eb.rouyi.entity.SysRoleEntity;
 import com.eb.rouyi.entity.SysUserEntity;
 import com.eb.rouyi.entity.SysUserRoleEntity;
-import com.eb.rouyi.mapper.SysUserZhenXuanMapper;
+import com.eb.rouyi.mapper.BizSysUserMapper;
 import com.eb.system.dto.rsp.UserRspDto;
 import com.web.sys.constants.enums.SysWebErrorCodeEnums;
 import com.web.sys.service.UserService;
@@ -28,8 +28,8 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class ZhenXuanUserService extends UserService implements IZhenXuanUserService {
-    private final SysUserZhenXuanMapper userMapper;
+public class BizUserService extends UserService implements IBizUserService {
+    private final BizSysUserMapper userMapper;
 
     private final SysUserRoleService sysUserRoleService;
     private final SysRoleService sysRoleService;

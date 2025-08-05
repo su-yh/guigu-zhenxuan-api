@@ -9,7 +9,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.lang.Nullable;
 
 @Mapper
-public interface SysUserZhenXuanMapper extends BaseMapperX<SysUserEntity> {
+public interface BizSysUserMapper extends BaseMapperX<SysUserEntity> {
     default SysUserEntity selectByUni(String username) {
         return selectUserByUserName(username);
     }
