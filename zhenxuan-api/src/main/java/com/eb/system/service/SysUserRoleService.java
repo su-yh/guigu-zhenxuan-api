@@ -2,7 +2,7 @@ package com.eb.system.service;
 
 import com.base.web.exception.ExceptionUtil;
 import com.eb.rouyi.entity.SysUserRoleEntity;
-import com.eb.rouyi.mapper.ApiSysUserRoleMapper;
+import com.eb.rouyi.mapper.BizSysUserRoleMapper;
 import com.eb.system.dto.req.UserRoleListReqDto;
 import com.web.sys.constants.enums.SysWebErrorCodeEnums;
 import lombok.RequiredArgsConstructor;
@@ -18,15 +18,15 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 public class SysUserRoleService {
-    private final ApiSysUserRoleMapper apiSysUserRoleMapper;
+    private final BizSysUserRoleMapper bizSysUserRoleMapper;
 
     public List<SysUserRoleEntity> selectRoleList(@Nullable Long userId) {
-        return apiSysUserRoleMapper.selectRoleList(userId);
+        return bizSysUserRoleMapper.selectRoleList(userId);
     }
 
     @Transactional
     public void updateUserRoleList(UserRoleListReqDto userRoleListReqDto) {
-        apiSysUserRoleMapper.deleteByUserId(userRoleListReqDto.getUserId());
+        bizSysUserRoleMapper.deleteByUserId(userRoleListReqDto.getUserId());
 
         List<Long> roleIds = userRoleListReqDto.getRoleIds();
         if (roleIds == null || roleIds.isEmpty()) {
@@ -45,6 +45,6 @@ public class SysUserRoleService {
             userRoleEntities.add(entity);
         }
 
-        apiSysUserRoleMapper.insertBatch(userRoleEntities);
+        bizSysUserRoleMapper.insertBatch(userRoleEntities);
     }
 }

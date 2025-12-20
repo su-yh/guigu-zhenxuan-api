@@ -9,7 +9,7 @@ import org.springframework.lang.Nullable;
 import java.util.List;
 
 @Mapper
-public interface ApiSysUserRoleMapper extends BaseMapperX<SysUserRoleEntity> {
+public interface BizSysUserRoleMapper extends BaseMapperX<SysUserRoleEntity> {
     default List<SysUserRoleEntity> selectRoleList(@Nullable Long userId) {
         if (userId == null) {
             return null;

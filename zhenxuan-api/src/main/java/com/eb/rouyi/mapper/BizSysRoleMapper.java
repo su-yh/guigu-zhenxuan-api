@@ -12,7 +12,7 @@ import java.util.Collection;
 import java.util.List;
 
 @Mapper
-public interface ApiSysRoleMapper extends BaseMapperX<SysRoleEntity> {
+public interface BizSysRoleMapper extends BaseMapperX<SysRoleEntity> {
     default List<SysRoleEntity> selectRoleList(@Nullable Collection<Long> roleIds) {
         if (roleIds == null || roleIds.isEmpty()) {
             return null;
