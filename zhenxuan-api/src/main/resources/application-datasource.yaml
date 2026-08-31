@@ -4,14 +4,10 @@ spring:
       enabled: true
       strict: true
       primary: "master"
-
-
-base:
-  datasource:
-    hikari:
-      master:
-        flyway:
-          out-of-order: true
+      hikari:
+        master:
+          flyway:
+            out-of-order: true
 
 ---
 spring:
@@ -19,18 +15,19 @@ spring:
     activate:
       on-profile: suyh,suyh_mac
 
-base:
   datasource:
-    hikari:
-      master:
-        jdbc-url: jdbc:mysql://qu-yun.isuyh.com:3306/study_vue?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=Asia/Shanghai
-        username: study_vue
-        password: study_vue
-        flyway:
-          enabled: true
-          locations:
-            - "sqls/mysql/sys/base"
-            - "sqls/zhenxuan/mysql"
+    dynamic:
+      hikari:
+        master:
+          jdbc-url: jdbc:mysql://qu-yun.isuyh.com:3306/study_vue?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=Asia/Shanghai
+          username: study_vue
+          password: study_vue
+          flyway:
+            enabled: true
+            locations:
+              - "sqls/mysql/sys/base"
+              - "sqls/zhenxuan/mysql"
+
 
 
 
